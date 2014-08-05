@@ -17,6 +17,9 @@ data$DateTime <- strptime(paste(data$Date, data$Time), "%d/%m/%Y %H:%M:%S")
 
 # Create the plot
 # This code assumes that there is a "figure" folder in the working directory. The plot will be written to this folder
-png(filename="figure/plot1.png", width = 480, height = 480, units = 'px')
-hist(data$Global_active_power, main="Global Active Power", xlab="Global Active Power (kilowatts)", col="red")
+# First set the locale configuration to English, so that the names of the days appear in this language, like the plot
+# given in the project
+Sys.setlocale("LC_TIME", "English")
+png(filename="figure/plot2.png", width = 480, height = 480, units = 'px')
+with(data, plot(DateTime, Global_active_power, xlab="", ylab="Global Active Power (kilowatts)", type="l"))
 dev.off()
